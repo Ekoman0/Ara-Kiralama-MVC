@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_AracKiralamaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tb1_Araclar">
+    <Key>
+      <PropertyRef Name="AracId" />
+    </Key>
+    <Property Name="AracId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marka" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModelYili" Type="smallint" />
+    <Property Name="Yakit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vites" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fiyat" Type="money" />
+  </EntityType>
+  <EntityType Name="Tb1_Musteriler">
+    <Key>
+      <PropertyRef Name="TcKimlik" />
+    </Key>
+    <Property Name="TcKimlik" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoğumTarihi" Type="date" />
+    <Property Name="Cinsiyet" Type="varchar" MaxLength="1" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="11" />
+    <Property Name="Sifre" Type="varchar" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="Tb1_Rezervasyonlar">
+    <Key>
+      <PropertyRef Name="RezervasyonId" />
+    </Key>
+    <Property Name="RezervasyonId" Type="int" Nullable="false" />
+    <Property Name="AracId" Type="int" />
+    <Property Name="TcKimlik" Type="varchar" MaxLength="50" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlmaTarihi" Type="date" />
+    <Property Name="TeslimTarihi" Type="date" />
+    <Property Name="Ucret" Type="money" />
+  </EntityType>
+  <EntityContainer Name="Db_AracKiralamaModelStoreContainer">
+    <EntitySet Name="Tb1_Araclar" EntityType="Self.Tb1_Araclar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb1_Musteriler" EntityType="Self.Tb1_Musteriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tb1_Rezervasyonlar" EntityType="Self.Tb1_Rezervasyonlar" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

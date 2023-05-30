@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebApplication1.Models.Tb1_Araclar>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Css/stilim.css" rel="stylesheet" />
+</head>
+<body>
+   <h1> Sakarya  Bip Otomotiv</h1>
+    <h3>Arac Kiralama</h3>
+    <table class="table" border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Resim</th>
+            <th>
+               Marka
+            </th>
+            <th>
+               Model
+            </th>
+            <th>
+                ModelYili
+            </th>
+            <th>
+                Yakit
+            </th>
+            <th>
+               Vites
+            </th>
+            <th>
+              Fiyat
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @{ 
+                    var dir = "~/VehicleImages/" + item.AracId + ".jpg";
+                    string FolderPath = Path.Combine(Server.MapPath(dir));
+                    if (System.IO.File.Exists(FolderPath))
+                    { 
+                    <img src="@Url.Content(dir)" with="100"/>
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelYili)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yakit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vites)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiyat)
+            </td>
+            <td>
+
+                @Html.ActionLink("Detay", "Details", new { id = item.AracId }) |
+                @Html.ActionLink("Rezervasyon", "Rezervation", new { id = item.AracId }) |
+            </td>
+        </tr>
+    }
+    
+    </table>
+    <p>
+        @Html.ActionLink("Ana Sayfa", "Index", "Home") |
+        @Html.ActionLink("Hakkımızda", "About", "Home") |
+        @Html.ActionLink("Araçlar", "Index", "Vehicle") |
+        @Html.ActionLink("Rezervasyonlarım", "Index", "Rezervation")|
+    </p>
+</body>
+</html>

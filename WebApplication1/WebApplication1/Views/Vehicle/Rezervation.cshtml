@@ -1,0 +1,111 @@
+﻿@model WebApplication1.Models.Tb1_Rezervasyonlar
+
+
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    function ToplamUcretHesapla()
+    {
+        var dt1 = new Date(AlmaTarihi.Value);
+        var dt2 = new Date(TeslimTarihi.Value);
+        var timeDiff = Math.abs(dt2.getTime() - dt1.getTime());
+        var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        var birimFiyat = parseFloat(Fiyat.Value);
+        Ucret.Value = parseInt(daysDiff) * birimFiyat;
+    }
+    </script>
+
+
+
+
+
+
+<!DOCTYPE html>
+                
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rezervation</title>                                          
+    <link href="~/Css/stilim.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <h1>Sakarya Bip Otomotiv</h1>
+        <h3>ARAÇ Bilgileri </h3>
+        <table border="1" cellpadding="5" cellspacing="0" width="600">
+            <tr>
+                <td width="40%">
+                    <h4> Araç No: @Url.RequestContext.RouteData.Values["id"] </h4>
+                    <h4> Araç Markası: @ViewData["Marka"]</h4>
+                    <h4> Araç Moddeli: @ViewData["Model"]</h4>
+                </td>
+                <td>
+                    @{
+                        var dir = "~/VehicleImages/" + Url.RequestContext.RouteData.Values["id"] + ".jpg";
+                        <img src="@Url.Content(dir)" width="300" />
+
+                    }
+                </td>
+            </tr>
+        </table>
+        @{
+            if (ViewBag.Message == null)
+            {
+                <h3>Rezervasyon formu</h3>
+                using (Html.BeginForm())
+
+
+
+                {
+        <table border="1" cellpadding="5" cellspacing="0" width="600">
+            <tr>
+                @Html.Hidden("AracId", Url.RequestContext.RouteData.Values["id"])
+                <td width="40%">Tc Kimlik  </td>
+                <td width="30%">@Html.EditorFor(Model => Model.TcKimlik)  </td>
+
+            </tr>
+            <tr>
+                <td width="30%">Ad Soyad  </td>
+                <td width="30%">@Html.EditorFor(Model => Model.AdSoyad)  </td>
+
+            </tr>
+            <tr>
+                <td width="30%"> Alma Tarihi  </td>
+                <td width="30%">@Html.EditorFor(Model => Model.AlmaTarihi)  </td>
+
+            </tr>
+            <tr>
+                <td width="30%">Teslim Tarihi  </td>
+                <td width="30%">@Html.TextBoxFor(Model => Model.TeslimTarihi, new { onbulr = "ToplamUcretHesapla()" })  </td>
+
+            </tr>
+            <tr>
+                <td width="30%">Fiyat (Günlük)  </td>
+                <td width="30%">@Html.TextBox("Fiyat", ViewData["Fiyat"]) TL </td>
+
+            </tr>
+            <tr>
+                <td width="30%"> Ücret (Toplam)  </td>
+                <td width="30%">@Html.EditorFor(Model => Model.Ucret) TL </td>
+
+            </tr>
+            <tr>
+                <td width="30%">Ad Soyad  </td>
+                <td><input type="submit" value="Rezervasyon Yap" /> </td>
+
+            </tr>
+         </table>
+                }
+            }
+        }
+
+    </div>
+    <h4>@ViewBag.Message </h4>
+    <p>
+
+        @Html.ActionLink("Araç Detayı", "Details", new { id = Url.RequestContext.RouteData.Values["id"] })
+        @Html.ActionLink("Araç Listesi" , "Index")
+    </p>
+</body>
+</html>

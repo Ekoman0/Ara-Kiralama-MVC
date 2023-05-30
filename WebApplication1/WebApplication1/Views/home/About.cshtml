@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>About</title>
+</head>
+<body>
+    <div>
+        <h1>Sakarya Bip Otomotiv</h1>
+        <h3>Hakkımızda</h3>
+        <p>
+            1972 yılında dedemiz Kaportacı Alaattin Altun tarafından oto
+            tamir dükkanıyla Sakaryalı hemşehrilerimizin hizmetine başladık.
+        </p>
+        <p>
+            Şimdi ise bizlere miras kalan bu güzel işleri daha ileri taşımak adına bu siteyi yayına aldık.
+
+        </p>
+        <hr />
+        @Html.ActionLink("Ana Sayfa", "Index")|
+        @Html.ActionLink("Hakkımızda", "About")|
+        @Html.ActionLink("Araçlar", "Index", "Vehicle")|
+        @Html.ActionLink("İletişim", "Contact")|
+
+
+
+    </div>
+</body>
+</html>

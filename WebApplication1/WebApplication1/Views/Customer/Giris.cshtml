@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giris</title>
+</head>
+<body>
+    <div>
+        <h1> Sakarya  Bip Otomotiv</h1>
+        <h3>Müşteri Giriş Sayfası</h3>
+        <hr />
+        @using (Html.BeginForm())
+            {
+                <table border="1" cellpadding="5" cellspacing="0" width="500">
+                    <tr>
+                        <td width="40%">Tc Kimlik No </td>
+                        <td><input type="text" name="tc" size="10" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Şifre</td>
+                        <td><input type="text" name="sif" size="10" /> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Giriş" /></td>
+                    </tr>
+                </table>
+         }
+        <p>
+            @ViewData["sonuc"]
+        </p>
+                <p>
+                    @Html.ActionLink("Kayıt Ol", "Kayit") |
+                    @Html.ActionLink("Araçlar", "Index", "Vehicle")
+                </p>
+            
+    </div>
+</body>
+</html>

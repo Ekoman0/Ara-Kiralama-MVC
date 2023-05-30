@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Models.Tb1_Musteriler
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kayit</title>
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        <h1>Sakarya BİP Otomotiv</h1>
+        <h4>Müşteri Kayıt Sayfası</h4>
+        <hr />
+        <table border="1" cellpadding="5" cellspacing="0" width="500">
+            <tr>
+                <td width="40%">Tc Kimlik No</td>
+                <td>@Html.EditorFor(model => model.TcKimlik, new { htmlAttributes = new { @class = "from-control" } })</td>
+            </tr>
+
+            <tr>
+                <td>Ad Soyad</td>
+                <td>@Html.EditorFor(model => model.AdSoyad, new { htmlAttributes = new { @class = "from-control" } })</td>
+            </tr>
+
+            <tr>
+                <td>Doğum Tarihi</td>
+                <td>@Html.EditorFor(model => model.DoğumTarihi, new { htmlAttributes = new { @class = "from-control" } })</td>
+            </tr>
+
+            <tr>
+                <td>Cisiyet</td>
+                <td>
+                    @Html.RadioButtonFor(model => model.Cinsiyet, "E") Erkek
+                    @Html.RadioButtonFor(model => model.Cinsiyet, "K") Kadın
+                </td>
+            </tr>
+
+            <tr>
+                <td>Telefon</td>
+                <td>@Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "from-control" } })</td>
+            </tr>
+            <tr>
+                <td>Şifre</td>
+                <td>@Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "from-control" } })</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Kaydet" /></td>
+            </tr>
+        </table>
+      
+    }
+    <p>@ViewData["sonuc"]</p>
+    <p>
+        @Html.ActionLink("Giriş", "Giris")  |
+        @Html.ActionLink("Araclar", "Index", "Vehicle")|
+    </p>
+    
+</body>
+</html>
